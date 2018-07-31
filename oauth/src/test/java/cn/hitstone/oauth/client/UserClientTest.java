@@ -48,6 +48,6 @@ public class UserClientTest {
         usernameSignInRequest.setSalt("salt");
         usernameSignInRequest.setUsername("username23");
 
-        UserDetail userDetail = userClient.register(usernameSignInRequest,true);
+        UserDetail userDetail = userClient.signIn(usernameSignInRequest,true);
     }
 }

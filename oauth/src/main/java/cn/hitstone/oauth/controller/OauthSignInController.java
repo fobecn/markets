@@ -43,9 +43,9 @@ public class OauthSignInController {
         usernameSignInRequest.setSalt(UUID.randomUUID().toString());
         usernameSignInRequest.setUsername(username);
 
-        System.out.println("aa");
+        //System.out.println("aa");
 
-        UserDetail userDetail = userClient.register(usernameSignInRequest,true);
+        UserDetail userDetail = userClient.signIn(usernameSignInRequest,true);
         return userDetail;
     }
 

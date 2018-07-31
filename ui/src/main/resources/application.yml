@@ -19,11 +19,6 @@ spring:
 #    suffix: .html
 #    servlet:
 #      content-type: text/html
-  datasource:
-      url: jdbc:mysql://localhost:3306/boxes
-      username: root
-      password: 95317677
-      driver-class-name: com.mysql.jdbc.Driver
 info:
   version: "0.1.0"
 logging:
