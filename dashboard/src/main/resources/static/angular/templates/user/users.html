@@ -1,0 +1,124 @@
+
+
+<h2 class="page-header" ng-model="firstName">用户管理</h2>
+				
+<form class="navbar-form navbar-left" style="width: 100%" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" style="width:325px;"  ng-model="keyword" placeholder="用户id,用户名称">
+  </div>
+  <button type="submit" class="btn btn-default" ng-click="search(keyword)">查找</button>
+  
+    
+    <div class="btn-group" style="float: right">
+        <a href="#" type="button"  class="btn btn-default {{all }}">全部</a>
+        <a href="#" type="button" class="btn btn-default {{inspectIng}}">可用</a>
+        <a href="#" type="button" class="btn btn-default {{inspectSuccessed}}">禁用</a>
+    </div>
+    </form>
+<div class="container-fluid" >
+
+	<div class="row-fluid">
+			<table class="table  table-striped">
+				<thead>
+					<tr>
+						<th>
+							id
+						</th>
+						<th>
+							 名称
+						</th>
+						<th>
+							图片
+						</th>
+						<th>
+							签名
+						</th>
+
+						<th>
+							创建时间
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					
+					
+					<tr   ng-repeat="user in response.body">
+						<td>
+							<p><span ng-click="masterlogin(user.id)"   > {{user.id}}</span></p>
+
+						</td>
+						<td>
+							<p>{{user.name}}</p>
+						</td>
+						
+						<td >
+							<p>{{user.image}}</p>
+						</td>
+						<td >
+							<p>{{user.signature}}</p>
+						</td>
+
+						<td>
+							{{user.createTime | date:'yyyy-MM-dd HH:mm:ss'}}
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+			
+			
+			<div >
+				<ul class="pagination" >
+					<li ng-show="pager.last >= 0">
+						<a href="#/user/list/{{pager.last}}/{{pager.size}}">上一页</a>
+					</li>
+					
+					<li  ng-repeat="lastPage in pager.lastPages">
+						<a ng-show="(lastPage-1) * pager.size == pager.begin" style="color:#cccccc" href="#/user/list/{{(lastPage-1) * pager.size}}/{{pager.size}}">{{lastPage}}</a>
+						<a  ng-show="(lastPage-1) * pager.size != pager.begin" href="#/user/list/{{(lastPage-1) * pager.size}}/{{pager.size}}">{{lastPage}}</a>
+					</li>
+					
+					<li  ng-repeat="nextPage in pager.nextPages">
+						<a ng-show="(nextPage-1) * pager.size == pager.begin" style="color:#cccccc" href="#/user/list/{{(nextPage-1) * pager.size}}/{{pager.size}}">{{nextPage}}</a>
+						<a ng-show="(nextPage-1) * pager.size != pager.begin" href="#/user/list/{{(nextPage-1) * pager.size}}/{{pager.size}}">{{nextPage}}</a>
+					</li>
+					<li ng-show="pager.next < pager.total">
+						<a href="#/user/list/{{pager.next}}/{{pager.size}}">下一页</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel"> 权限分配</h4>
+			</div>
+			<div class="modal-body" id="modal_rode">
+				<ul>
+				</ul>
+
+				<div style="margin-left: 64px">
+				过期时间：<input size="16" type="text" id="expireDate"   onClick="WdatePicker({startDate:'2018-01-06'})" >
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+				<button type="button" class="btn btn-primary" ng-click="addRole()" >确 认</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.modal-body li{ text-align: left; display: inline-block; margin: 0px 24px 0px 24px;}
+</style>

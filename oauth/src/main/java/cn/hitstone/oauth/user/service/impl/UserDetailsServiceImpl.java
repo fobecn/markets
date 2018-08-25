@@ -40,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             for(Authority authority : userDetail.getAuthorities()){
                 authorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
             }
-            userDetails = new org.springframework.security.core.userdetails.User(username,userDetail.getUserPassword().getPassword(),authorities);
+            userDetails = new org.springframework.security.core.userdetails.User(userDetail.getUserId().toString(),userDetail.getUserPassword().getPassword(),authorities);
         }else{
             throw new UsernameNotFoundException("");
         }
